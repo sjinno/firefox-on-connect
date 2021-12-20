@@ -1,6 +1,14 @@
 // content-script.js
 
-var myPort = browser.runtime.connect({ name: 'port-from-cs' });
+const userBrowser =
+    navigator.userAgent.indexOf('Firefox') > -1 ? browser : chrome;
+
+console.log(
+    'SHOHEI@contentScript.js:6 ##### VAR: "userBrowser" =',
+    userBrowser,
+);
+
+var myPort = userBrowser.runtime.connect({ name: 'port-from-cs' });
 myPort.postMessage({ greeting: 'hello from content script' });
 
 myPort.onMessage.addListener(function (m) {

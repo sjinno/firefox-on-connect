@@ -13,8 +13,8 @@ function connected(p) {
     });
 }
 
-browser.runtime.onConnect.addListener(connected);
+chrome.runtime.onConnect.addListener(connected);
 
-browser.browserAction.onClicked.addListener(function () {
+chrome.browserAction.onClicked.addListener(function () {
     portFromCS.postMessage({ greeting: 'they clicked the button!' });
 });
